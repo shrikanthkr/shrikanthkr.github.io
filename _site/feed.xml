@@ -3,10 +3,10 @@
   <channel>
     <title>Blog</title>
     <description></description>
-    <link>http://shrikanth_kr.github.io/</link>
-    <atom:link href="http://shrikanth_kr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 03 Oct 2014 21:34:50 +0530</pubDate>
-    <lastBuildDate>Fri, 03 Oct 2014 21:34:50 +0530</lastBuildDate>
+    <link>http://shrikanthkr.github.io/</link>
+    <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 03 Oct 2014 21:36:09 +0530</pubDate>
+    <lastBuildDate>Fri, 03 Oct 2014 21:36:09 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -32,8 +32,8 @@
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/footer&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 29 Aug 2014 20:04:25 +0530</pubDate>
-        <link>http://shrikanth_kr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
-        <guid isPermaLink="true">http://shrikanth_kr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
+        <link>http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
         
         <category>featured</category>
         
@@ -69,8 +69,8 @@
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/footer&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 29 Aug 2014 20:04:25 +0530</pubDate>
-        <link>http://shrikanth_kr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://shrikanth_kr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll.html</guid>
+        <link>http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll.html</guid>
         
         <category>featured</category>
         
