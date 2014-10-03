@@ -24,11 +24,13 @@
 
   <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
   <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+  <link rel="stylesheet" type="text/css"  href="/css/prism.css" />
   <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 
   <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
   <script type="text/javascript" src="/assets/js/index.js"></script>
   <script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+  <script type="text/javascript" src="/assets/js/prism.js"></script>
 </head>
 
   <body itemscope itemtype="http://schema.org/Article">
@@ -107,21 +109,23 @@
 
 <p>Jekyll also offers powerful support for code snippets:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
-<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
+<div>
+  <pre data-line=''><code class='language-ruby'>def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi(&#39;Tom&#39;)
+#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</code></pre>
+</div>
 
 <p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://github.com/jekyll/jekyll-help">Jekyll’s dedicated Help repository</a>.</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">footer</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;site-footer&quot;</span><span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;subscribe&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/feed.xml&quot;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;tooltip&quot;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">i</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;fa fa-rss&quot;</span><span class="o">&gt;&lt;</span><span class="err">/i&gt; Subscribe!&lt;/span&gt;&lt;/a&gt;</span>
-  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="o">&gt;</span><span class="nx">a</span>
-   <span class="o">&lt;</span><span class="nx">section</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;copyright&quot;</span><span class="o">&gt;</span><span class="nx">All</span> <span class="nx">content</span> <span class="nx">copyright</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;mailto:shrikanth_kr@yahoo.com&quot;</span><span class="o">&gt;</span><span class="nx">Shrikanth</span><span class="o">&lt;</span><span class="err">/a&gt; &amp;copy; 2014 &amp;bull; All rights reserved.&lt;/section&gt;</span>
-   <span class="o">&lt;</span><span class="nx">section</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;poweredby&quot;</span><span class="o">&gt;</span><span class="nx">Made</span> <span class="kd">with</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;http://jekyllrb.com&quot;</span><span class="o">&gt;</span> <span class="nx">Jekyll</span><span class="o">&lt;</span><span class="err">/a&gt;&lt;/section&gt;</span>
-  <span class="o">&lt;</span><span class="err">/div&gt;</span>
-<span class="o">&lt;</span><span class="err">/footer&gt;</span></code></pre></div>
+<div>
+  <pre data-line=''><code class='language-javascript'>var obj = { &#39;foo&#39;: true, &#39;bar&#39;: false };
+
+for (key in obj) {
+  console.log(obj[key]);
+}</code></pre>
+</div>
 
         </section>
         <footer class="post-footer">

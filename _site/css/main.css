@@ -719,20 +719,18 @@ body {
 .post-tag-articleimage {
   display: none; }
 
-pre,
-code {
+p pre,
+p code {
   font-size: 15px;
   border: 1px solid #e8e8e8;
   border-radius: 3px;
-  background-color: #eef; }
-
-code {
+  background-color: #f5f2f0; }
+p code {
   padding: 1px 5px; }
-
-pre {
+p pre {
   padding: 8px 12px;
   overflow-x: scroll; }
-  pre > code {
+  p pre > code {
     border: 0;
     padding-right: 0;
     padding-left: 0; }
