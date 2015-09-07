@@ -5,8 +5,8 @@
     <description></description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Sep 2015 11:42:39 +0530</pubDate>
-    <lastBuildDate>Mon, 07 Sep 2015 11:42:39 +0530</lastBuildDate>
+    <pubDate>Mon, 07 Sep 2015 12:14:37 +0530</pubDate>
+    <lastBuildDate>Mon, 07 Sep 2015 12:14:37 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -74,7 +74,9 @@
         <link>http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</link>
         <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</guid>
         
-        <category>android</category>
+        <category>android,</category>
+        
+        <category>border</category>
         
         
         <category>jekyll</category>
