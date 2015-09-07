@@ -5,9 +5,83 @@
     <description></description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 03 Oct 2014 23:31:00 +0530</pubDate>
-    <lastBuildDate>Fri, 03 Oct 2014 23:31:00 +0530</lastBuildDate>
+    <pubDate>Mon, 07 Sep 2015 11:42:39 +0530</pubDate>
+    <lastBuildDate>Mon, 07 Sep 2015 11:42:39 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Drawing borders in Android</title>
+        <description>&lt;p&gt;To draw borders we have to understand the basics of layer-list drawable component. An exhaustive guide is provided by &lt;a href=&quot;http://developer.android.com/guide/topics/resources/drawable-resource.html#LayerList&quot;&gt;Android Developers Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Code snippet to draw top and bottom borders:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;res/drawable/border.xml
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;layer-list xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&amp;gt;
+&amp;lt;item&amp;gt;&amp;lt;!--Item 1--&amp;gt;
+    &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
+        &amp;lt;stroke android:color=&amp;quot;@color/green&amp;quot;   android:width=&amp;quot;2dp&amp;quot;/&amp;gt;
+        &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
+    &amp;lt;/shape&amp;gt;
+&amp;lt;/item&amp;gt;
+&amp;lt;item android:top=&amp;quot;2dp&amp;quot; android:bottom=&amp;quot;2dp&amp;quot;&amp;gt;&amp;lt;!--Item 2--&amp;gt;
+    &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
+        &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
+    &amp;lt;/shape&amp;gt;
+&amp;lt;/item&amp;gt;
+&amp;lt;/layer-list&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5&gt;How layer list works?&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Layer One&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;item&amp;gt;&amp;lt;!--Item 1--&amp;gt;
+    &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
+        &amp;lt;stroke android:color=&amp;quot;@color/green&amp;quot; android:width=&amp;quot;2dp&amp;quot;/&amp;gt;
+        &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
+    &amp;lt;/shape&amp;gt;
+&amp;lt;/item&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Above code snippet results in a layer with border on all sides. &lt;strong&gt;Stroke&lt;/strong&gt; tag defines the border and &lt;strong&gt;Solid&lt;/strong&gt; tag defines the background colour.&lt;/p&gt;
+
+&lt;h5&gt;&lt;img src=&quot;/assets/article_images/borders-android/layer-one.png&quot; alt=&quot;Layer One&quot;&gt;&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Layer Two&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;item android:top=&amp;quot;2dp&amp;quot; android:bottom=&amp;quot;2dp&amp;quot;&amp;gt;&amp;lt;!--Item 2--&amp;gt;
+    &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
+        &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
+    &amp;lt;/shape&amp;gt;
+&amp;lt;/item&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This snippet is drawn over the first layer which has top offset 2dp and bottom offset 2dp (border thickness)&lt;/p&gt;
+
+&lt;h5&gt;&lt;img src=&quot;/assets/article_images/borders-android/both-layers.png&quot; alt=&quot;Layer One And Two&quot;&gt;&lt;/h5&gt;
+</description>
+        <pubDate>Mon, 07 Sep 2015 20:04:25 +0530</pubDate>
+        <link>http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</guid>
+        
+        <category>android</category>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll! Shrikanth</title>
