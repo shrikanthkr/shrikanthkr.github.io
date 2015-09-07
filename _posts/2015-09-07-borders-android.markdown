@@ -10,7 +10,10 @@ image: /assets/article_images/borders-android/background.png
 
 To draw borders we have to understand the basics of layer-list drawable component. An exhaustive guide is provided by [Android Developers Guide][developers-android-layer-list].
 
+---
+
 Code snippet to draw top and bottom borders:
+
 > res/drawable/border.xml
 {% prism markup%}
 <?xml version="1.0" encoding="utf-8"?>

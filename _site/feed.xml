@@ -2,16 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog</title>
-    <description></description>
+    <description>How did I do
+</description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Sep 2015 12:14:37 +0530</pubDate>
-    <lastBuildDate>Mon, 07 Sep 2015 12:14:37 +0530</lastBuildDate>
+    <pubDate>Mon, 07 Sep 2015 12:43:57 +0530</pubDate>
+    <lastBuildDate>Mon, 07 Sep 2015 12:43:57 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>Drawing borders in Android</title>
         <description>&lt;p&gt;To draw borders we have to understand the basics of layer-list drawable component. An exhaustive guide is provided by &lt;a href=&quot;http://developer.android.com/guide/topics/resources/drawable-resource.html#LayerList&quot;&gt;Android Developers Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr&gt;
 
 &lt;p&gt;Code snippet to draw top and bottom borders:&lt;/p&gt;
 

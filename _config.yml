@@ -4,6 +4,8 @@ highlighter: prism
 
 # Site settings
 title: "Blog"
+description: > # this means to ignore newlines until "email:"
+   How did I do
 
 email: shrikanth_kr@yahoo.com
 #blog logo
@@ -53,3 +55,4 @@ social:
 # Plugins
 whitelist: []
 gems:      [prism]
+excerpt_separator: "`"
