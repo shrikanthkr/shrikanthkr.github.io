@@ -24,7 +24,7 @@ GCM basics involves four steps
 - Project Number (_845696541232_)
 - Server API Key (_XIzaSyBDRJ00YJbTE011CbWWjlcKYUGI3eLccdI_)
 
-Please refer [Create Project][create-project] on creating a new project and [Generate API Key][server-key] for generating a Server key(API Key)
+Refer to [Create Project][create-project] on creating a new project and [Generate API Key][server-key] for generating a Server key(API Key)
 
 Once we have all the required data we can start with our client registration process.
 
