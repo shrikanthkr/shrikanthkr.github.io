@@ -6,9 +6,333 @@
 </description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Sep 2015 12:43:57 +0530</pubDate>
-    <lastBuildDate>Mon, 07 Sep 2015 12:43:57 +0530</lastBuildDate>
+    <pubDate>Tue, 08 Sep 2015 15:52:21 +0530</pubDate>
+    <lastBuildDate>Tue, 08 Sep 2015 15:52:21 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Basics of Android GCM</title>
+        <description>&lt;p&gt;Google Cloud Messaging (GCM) is a service that enables developers to send data from servers to both &lt;code&gt;Android&lt;/code&gt; applications or &lt;code&gt;Chrome&lt;/code&gt; apps and extensions. &lt;a href=&quot;https://en.wikipedia.org/wiki/Google_Cloud_Messaging&quot;&gt;Wikipedia&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;GCM basics involves four steps&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Registering the client (Android Device)&lt;/li&gt;
+&lt;li&gt;Provide the registration ID to server&lt;/li&gt;
+&lt;li&gt;Send notifications from Server to GCM with registration ID&lt;/li&gt;
+&lt;li&gt;Receive notifications on the client&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Prerequisite&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Project Number (&lt;em&gt;845696541232&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Server API Key (&lt;em&gt;XIzaSyBDRJ00YJbTE011CbWWjlcKYUGI3eLccdI&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please refer &lt;a href=&quot;https://developers.google.com/console/help/new/#creatingdeletingprojects&quot;&gt;Create Project&lt;/a&gt; on creating a new project and &lt;a href=&quot;https://developers.google.com/console/help/new/#api-keys&quot;&gt;Generate API Key&lt;/a&gt; for generating a Server key(API Key)&lt;/p&gt;
+
+&lt;p&gt;Once we have all the required data we can start with our client registration process.&lt;/p&gt;
+
+&lt;h4&gt;Creating a new Project&lt;/h4&gt;
+
+&lt;p&gt;Ensure that we have the necessary dependencies added.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/build.gradle&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;dependencies {
+    compile fileTree(dir: &amp;#39;libs&amp;#39;, include: [&amp;#39;*.jar&amp;#39;])
+    compile &amp;#39;com.android.support:appcompat-v7:21.0.3&amp;#39;
+    compile &amp;#39;com.google.android.gms:play-services:6.5.87&amp;#39;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Adding Permissions&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/src/main/Androidmanifest.xml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&amp;gt;
+    ...
+    &amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;
+    &amp;lt;uses-permission android:name=&amp;quot;android.permission.WAKE_LOCK&amp;quot; /&amp;gt;
+    &amp;lt;uses-permission android:name=&amp;quot;com.google.android.c2dm.permission.RECEIVE&amp;quot; /&amp;gt;
+    &amp;lt;permission android:name=&amp;quot;com.example.gcm.permission.C2D_MESSAGE&amp;quot; android:protectionLevel=&amp;quot;signature&amp;quot; /&amp;gt;
+    &amp;lt;uses-permission android:name=&amp;quot;com.example.gcm.permission.C2D_MESSAGE&amp;quot; /&amp;gt;
+    ...      
+&amp;lt;/manifest&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Registering the client (Android Device)&lt;/h4&gt;
+
+&lt;p&gt;The client part has an interface with a registration button. On click of the button a call to GCM is made and &lt;code&gt;Registration ID&lt;/code&gt; is obtained. While making the request it is necessary to note that we have the correct &lt;em&gt;&lt;strong&gt;Project Number&lt;/strong&gt;&lt;/em&gt; from the developers console.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;res/layout/activity_main.xml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+                xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;
+                android:layout_width=&amp;quot;match_parent&amp;quot;
+                android:layout_height=&amp;quot;match_parent&amp;quot;
+                android:paddingLeft=&amp;quot;@dimen/activity_horizontal_margin&amp;quot;
+                android:paddingRight=&amp;quot;@dimen/activity_horizontal_margin&amp;quot;
+                android:paddingTop=&amp;quot;@dimen/activity_vertical_margin&amp;quot;
+                android:paddingBottom=&amp;quot;@dimen/activity_vertical_margin&amp;quot;
+                tools:context=&amp;quot;.MainActivity&amp;quot;&amp;gt;
+    &amp;lt;Button
+        android:layout_width=&amp;quot;wrap_content&amp;quot;
+        android:layout_height=&amp;quot;wrap_content&amp;quot;
+        android:text=&amp;quot;Register&amp;quot;
+        android:id=&amp;quot;@+id/register&amp;quot;
+        android:layout_below=&amp;quot;@+id/textView&amp;quot;
+        android:layout_centerHorizontal=&amp;quot;true&amp;quot;
+        android:layout_marginTop=&amp;quot;117dp&amp;quot;/&amp;gt;
+
+&amp;lt;/RelativeLayout&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;src/main/java/.../MainActivity.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Declaring necessary variables and functions&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button register_button;
+String PROJECT_NUMBER = &amp;quot;845696541232&amp;quot;;
+GoogleCloudMessaging gcmObj;
+String regId;
+
+ protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    register_button = (Button) findViewById(R.id.register);
+    register_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        registerInBackground();
+      }
+    });&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Writing the registration function&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void registerInBackground() {
+    new AsyncTask&amp;lt;Void, Void, String&amp;gt;() {
+        @Override
+        protected String doInBackground(Void... params) {
+            String msg = &amp;quot;&amp;quot;;
+            try {
+                gcmObj = GoogleCloudMessaging.getInstance(getApplicationContext());
+                regId = gcmObj.register(PROJECT_NUMBER);
+                msg = &amp;quot;Registration ID :&amp;quot; + regId;
+            } catch (IOException ex) { msg = ex.getMessage();}
+            return msg;
+        }
+        @Override
+        protected void onPostExecute(String msg) {
+            Toast.makeText(getApplicationContext(),&amp;quot;Registered with GCM Server successfully.\n\n&amp;quot;+ msg, Toast.LENGTH_SHORT).show();
+            Log.d(&amp;quot;MainActivity&amp;quot;, regId);
+        }
+    }.execute(null, null, null);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Provide the registration ID to server&lt;/h4&gt;
+
+&lt;p&gt;Once the registration is successful,  &lt;code&gt;Registration ID&lt;/code&gt; is obtained. This &lt;code&gt;Registration ID&lt;/code&gt; is used by the server to send notifications to device. In our sample the &lt;code&gt;Registration ID&lt;/code&gt; printed in logs is copied and used in the server part.&lt;/p&gt;
+
+&lt;h4&gt;Send notifications from Server to GCM with &lt;em&gt;Registration ID&lt;/em&gt; (Server Part)&lt;/h4&gt;
+
+&lt;p&gt;The sample server code here is written in Nodejs. Using &lt;code&gt;node-gcm&lt;/code&gt; library we can easily send messages to &lt;strong&gt;GCM&lt;/strong&gt;. The server part includes two files. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;package.json&lt;/li&gt;
+&lt;li&gt;node-gcm-sample.js&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;package.json&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;{
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;node-gcm&amp;quot;: &amp;quot;git+https://github.com/ToothlessGear/node-gcm.git&amp;quot;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;node-gcm-sample.js&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;var gcm = require(&amp;#39;node-gcm&amp;#39;);
+var message = new gcm.Message();
+message.addData(&amp;#39;key1&amp;#39;, &amp;#39;Awesome World!!&amp;#39;); /*Message to the client*/
+
+var regIds = [&amp;#39;COPIED_ID_FROM_ANDROID_LOGS&amp;#39;];
+var sender = new gcm.Sender(&amp;#39;SERVER_API_KEY&amp;#39;);
+
+sender.send(message, { registrationIds: regIds } , function (err, result) {
+  if(err) console.error(err);
+  else    console.log(result);
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Create both the files in a project folder, and execute &lt;code&gt;npm install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4&gt;Receive notifications on the client&lt;/h4&gt;
+
+&lt;p&gt;Now we enter into the last part of preparing our client to receive notifications. We have to intimate the client to listen for notifications using a &lt;code&gt;Receiver&lt;/code&gt; and a &lt;code&gt;Service&lt;/code&gt; to handle the data from server.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;src/main/java/.../GCMReceiver.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Receiver code stating the necessary service &lt;code&gt;(GCMIntentService)&lt;/code&gt; to be triggered.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class GCMReceiver extends WakefulBroadcastReceiver{
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        ComponentName comp = new ComponentName(context.getPackageName(),GCMIntentService.class.getName());
+        startWakefulService(context, (intent.setComponent(comp)));
+        setResultCode(Activity.RESULT_OK);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Update Androidmanifest&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/src/main/Androidmanifest.xml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;receiver
+    android:name=&amp;quot;.GCMReceiver&amp;quot;
+    android:exported=&amp;quot;true&amp;quot;
+    android:permission=&amp;quot;com.google.android.c2dm.permission.SEND&amp;quot; &amp;gt;
+    &amp;lt;intent-filter&amp;gt;
+        &amp;lt;action android:name=&amp;quot;com.google.android.c2dm.intent.RECEIVE&amp;quot; /&amp;gt;
+        &amp;lt;category android:name=&amp;quot;com.example.gcm&amp;quot; /&amp;gt;
+    &amp;lt;/intent-filter&amp;gt;
+&amp;lt;/receiver&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;src/main/java/.../GCMReceiver.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Service code for handling the notifications part. Here &lt;code&gt;MESSAGE_KEY&lt;/code&gt; is the expected key that is set from the server. &lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class GCMIntentService extends IntentService {
+    String MESSAGE_KEY = &amp;quot;key1&amp;quot;;
+    public GCMIntentService() {
+        super(&amp;quot;Message&amp;quot;);
+    }
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        Bundle extras = intent.getExtras();
+        String message = intent.getStringExtra(MESSAGE_KEY);
+        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+        String messageType = gcm.getMessageType(intent);
+        final int notificationID = (int) (Math.random() * 100000000);
+
+        if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
+            sendNotification(&amp;quot;GCM notification: Send error&amp;quot; + extras.toString(), notificationID);
+        }else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED.equals(messageType)) {
+            sendNotification(&amp;quot;Deleted messages on server&amp;quot; + extras.toString(), notificationID);
+        }else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
+            sendNotification(message, notificationID);
+        }
+        GCMReceiver.completeWakefulIntent(intent);
+    }
+
+    private void sendNotification(String msg, int notificationID) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        .setSmallIcon(R.drawable.common_ic_googleplayservices);
+        .setContentTitle(&amp;quot;Notification&amp;quot;);
+        .setContentText(msg);
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this,0,resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(notificationID, builder.build());
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Update Androidmanifest&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/src/main/Androidmanifest.xml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;service
+    android:name=&amp;quot;.GCMIntentService&amp;quot;
+    android:exported=&amp;quot;false&amp;quot; &amp;gt;
+    &amp;lt;intent-filter&amp;gt;
+        &amp;lt;action android:name=&amp;quot;com.google.android.c2dm.intent.RECEIVE&amp;quot; /&amp;gt;
+    &amp;lt;/intent-filter&amp;gt;
+&amp;lt;/service&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Now we are ready to check if our GCM component is working. Run the app in a device connected to internet, and open your server project folder from termial. Run &lt;code&gt;node node-gcm-sample.js&lt;/code&gt;.Source code for &lt;a href=&quot;https://github.com/shrikanthkr/android-gcm-client&quot;&gt;Android Client&lt;/a&gt; and &lt;a href=&quot;https://github.com/shrikanthkr/node-gcm-sample&quot;&gt;Node Server&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 08 Sep 2015 20:04:25 +0530</pubDate>
+        <link>http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</guid>
+        
+        <category>android,</category>
+        
+        <category>gcm,</category>
+        
+        <category>google</category>
+        
+        <category>cloud</category>
+        
+        <category>messaging</category>
+        
+        
+        <category>android</category>
+        
+      </item>
     
       <item>
         <title>Drawing borders in Android</title>
@@ -74,17 +398,15 @@
 &lt;h5&gt;&lt;img src=&quot;/assets/article_images/borders-android/both-layers.png&quot; alt=&quot;Layer One And Two&quot;&gt;&lt;/h5&gt;
 </description>
         <pubDate>Mon, 07 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2015/09/07/borders-android.html</guid>
+        <link>http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</guid>
         
         <category>android,</category>
         
         <category>border</category>
         
         
-        <category>jekyll</category>
-        
-        <category>update</category>
+        <category>android</category>
         
       </item>
     

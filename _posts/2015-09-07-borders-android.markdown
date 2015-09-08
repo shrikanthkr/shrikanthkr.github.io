@@ -2,7 +2,7 @@
 layout: post
 title:  "Drawing borders in Android"
 date:   2015-09-07 14:34:25
-categories: jekyll update
+categories: android
 tags: android, border
 image: /assets/article_images/borders-android/background.png
 
