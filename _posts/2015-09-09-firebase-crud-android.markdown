@@ -4,7 +4,7 @@ title:  "CRUD on Android with Firebase API"
 date:   2015-09-09 14:34:25
 categories: android
 tags: android, firebase, firebase android, firebase sdk
-image: /assets/article_images/borders-android/background.png
+image: /assets/article_images/firebase-crud-android/bg.jpg
 
 --- 
 
