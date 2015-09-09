@@ -6,9 +6,274 @@
 </description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 08 Sep 2015 15:54:49 +0530</pubDate>
-    <lastBuildDate>Tue, 08 Sep 2015 15:54:49 +0530</lastBuildDate>
+    <pubDate>Wed, 09 Sep 2015 15:28:59 +0530</pubDate>
+    <lastBuildDate>Wed, 09 Sep 2015 15:28:59 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>CRUD on Android with Firebase API</title>
+        <description>&lt;p&gt;Firebase provides a powerful API to &lt;strong&gt;store, retrieve and sync&lt;/strong&gt; data in realtime, which paves way for an accelerated development reducing the pain of setting up your backend. In this post we will get a quick glance of making a CRUD with &lt;a href=&quot;https://www.firebase.com/docs/android/&quot;&gt;Firebase Android SDK&lt;/a&gt;. Firebase also provides you with a &lt;a href=&quot;https://www.firebase.com/docs/android/quickstart.html&quot;&gt;Quick Start&lt;/a&gt; guide to get on with its SDKs. &lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Once you have an account with &lt;a href=&quot;https://www.firebase.com/&quot;&gt;Firebase&lt;/a&gt;, create an &lt;code&gt;app&lt;/code&gt; and note down the &lt;code&gt;app&amp;#39;s&lt;/code&gt; URL. This &lt;code&gt;app&lt;/code&gt; URL will be used in our android application as the base URL to firebase.&lt;/p&gt;
+
+&lt;h4&gt;Adding Dependencies&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/build.gradle
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;dependencies {
+    compile &amp;#39;com.firebase:firebase-client-android:2.3.1+&amp;#39;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Incase you end up with build errors, &lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;android {
+    ...
+    packagingOptions {
+    exclude &amp;#39;META-INF/LICENSE&amp;#39;
+    exclude &amp;#39;META-INF/LICENSE-FIREBASE.txt&amp;#39;
+    exclude &amp;#39;META-INF/NOTICE&amp;#39;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Adding Permissions&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/src/main/AndroidManifest.xml 
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Necessary Layout Components&lt;/h4&gt;
+
+&lt;p&gt;Two &lt;code&gt;EditText&lt;/code&gt; components,  a &lt;code&gt;ListView&lt;/code&gt; and a &lt;code&gt;Button&lt;/code&gt;. These &lt;code&gt;EditText&lt;/code&gt; components holds the &lt;code&gt;name&lt;/code&gt;(key) and the &lt;code&gt;message&lt;/code&gt;(value) to be saved. &lt;code&gt;Button&lt;/code&gt; is used to trigger the save action using &lt;strong&gt;Firebase&lt;/strong&gt; sdk and a &lt;code&gt;ListView&lt;/code&gt; to display the data.
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;EditText
+    android:layout&lt;em&gt;width=&amp;quot;fill&lt;/em&gt;parent&amp;quot;
+    android:layout&lt;em&gt;height=&amp;quot;60dp&amp;quot;
+    android:hint=&amp;quot;Enter Name&amp;quot;
+    android:id=&amp;quot;@+id/name&amp;quot;
+    android:layout&lt;/em&gt;marginTop=&amp;quot;10dp&amp;quot;
+    android:layout&lt;em&gt;alignParentLeft=&amp;quot;true&amp;quot;
+    android:layout&lt;/em&gt;alignParentStart=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;EditText
+    android:layout&lt;em&gt;width=&amp;quot;fill&lt;/em&gt;parent&amp;quot;
+    android:layout&lt;em&gt;height=&amp;quot;60dp&amp;quot;
+    android:hint=&amp;quot;Enter Message&amp;quot;
+    android:layout&lt;/em&gt;marginTop=&amp;quot;10dp&amp;quot;
+    android:id=&amp;quot;@+id/message&amp;quot;
+    android:layout&lt;em&gt;below=&amp;quot;@+id/name&amp;quot;/&amp;gt;
+&amp;lt;Button
+    android:layout&lt;/em&gt;width=&amp;quot;wrap&lt;em&gt;content&amp;quot;
+    android:layout&lt;/em&gt;height=&amp;quot;wrap&lt;em&gt;content&amp;quot;
+    android:text=&amp;quot;Save&amp;quot;
+    android:id=&amp;quot;@+id/save&amp;quot;
+    android:layout&lt;/em&gt;below=&amp;quot;@+id/message&amp;quot;
+    android:layout&lt;em&gt;marginTop=&amp;quot;10dp&amp;quot;
+    android:layout&lt;/em&gt;centerHorizontal=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;ListView
+    android:layout&lt;em&gt;width=&amp;quot;wrap&lt;/em&gt;content&amp;quot;
+    android:layout&lt;em&gt;height=&amp;quot;fill&lt;/em&gt;parent&amp;quot;
+    android:id=&amp;quot;@+id/listView&amp;quot;
+    android:layout&lt;em&gt;below=&amp;quot;@+id/save&amp;quot;
+    android:layout&lt;/em&gt;alignParentLeft=&amp;quot;true&amp;quot;
+    android:layout_alignParentStart=&amp;quot;true&amp;quot;/&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Saving data on Firebase - Create&lt;/h4&gt;
+
+&lt;p&gt;Declare necessary attributes.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button save;
+static Firebase myFirebaseRef;
+EditText nameEditText;
+EditText messageEditText;
+ProgressBar progressBar;
+static final String TAG = &amp;quot;Main Acvity&amp;quot;;
+ArrayAdapter&amp;lt;String&amp;gt; valuesAdapter;
+ArrayList&amp;lt;String&amp;gt; displayArray;
+ArrayList&amp;lt;String&amp;gt; keysArray;
+ListView listView;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The OnCreate Function&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    /*View bindings*/
+    save = (Button)findViewById(R.id.save);
+    nameEditText = (EditText)findViewById(R.id.name);
+    messageEditText= (EditText)findViewById(R.id.message);
+    progressBar = (ProgressBar)findViewById(R.id.progressBar);
+    listView = (ListView)findViewById(R.id.listView);
+
+    /*Variable Initialization*/
+    displayArray  = new ArrayList&amp;lt;&amp;gt;();
+    keysArray = new ArrayList&amp;lt;&amp;gt;();
+    valuesAdapter = new ArrayAdapter&amp;lt;String&amp;gt;(this,android.R.layout.simple_list_item_1,android.R.id.text1,displayArray);
+    listView.setAdapter(valuesAdapter);
+    /*listView.setOnItemClickListener(itemClickListener);*/
+    save.setOnClickListener(this);
+
+    /*Firebase Initialization*/
+    Firebase.setAndroidContext(this);
+    myFirebaseRef = new Firebase(&amp;quot;&amp;lt;appurl&amp;gt;&amp;quot;);
+    /*myFirebaseRef.addChildEventListener(childEventListener);*/
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Adding click Listener to fire save action&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.save:
+            String nameString = nameEditText.getText().toString();
+            String messageString = messageEditText.getText().toString();
+            save(nameString,messageString);
+        break;
+    }
+}
+
+private void save(String name,String message){
+    myFirebaseRef.child(name).setValue(message, new Firebase.CompletionListener() {
+        @Override
+        public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+            nameEditText.setText(&amp;quot;&amp;quot;);
+            messageEditText.setText(&amp;quot;&amp;quot;);
+        }
+    });
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We have saved our data to firebase and on our onComplete method above we empty the &lt;code&gt;edittext&lt;/code&gt; boxes. So where do we actually read our data and update the view?&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Read data from Firebase - Read&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Firebase&lt;/strong&gt; provides a ChildEventListener which pops up when ever a change occurs to the specified child to which the event is bound. In our case we bind it to the &lt;code&gt;myFirebaseRef&lt;/code&gt;, which is commented out initially on our &lt;code&gt;onCreate&lt;/code&gt; method. &lt;/p&gt;
+
+&lt;p&gt;Events which we could listen to are &lt;code&gt;onChildAdded&lt;/code&gt;, &lt;code&gt;onChildChanged&lt;/code&gt;, &lt;code&gt;onChildRemoved&lt;/code&gt;, &lt;code&gt;onChildMoved&lt;/code&gt;, &lt;code&gt;onCancelled&lt;/code&gt;. &lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;ChildEventListener childEventListener = new ChildEventListener() {
+    @Override
+    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        Log.d(TAG, dataSnapshot.getKey() + &amp;quot;:&amp;quot; + dataSnapshot.getValue().toString());
+        String keyAndValue = &amp;quot;Key: &amp;quot; +dataSnapshot.getKey().toString() + &amp;quot;\t Value: &amp;quot; +     dataSnapshot.getValue().toString();
+        displayArray.add(keyAndValue);
+        keysArray.add(dataSnapshot.getKey().toString());
+        updateListView();
+    }
+    @Override
+    public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+    @Override
+    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+    @Override
+    public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+    @Override
+    public void onCancelled(FirebaseError firebaseError) {}
+};
+
+private void updateListView(){
+    valuesAdapter.notifyDataSetChanged();
+    listView.invalidate();
+    Log.d(TAG, &amp;quot;Length: &amp;quot; + displayArray.size());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Whenever a new child is added &lt;code&gt;onChildAdded&lt;/code&gt; will get triggered and the view is updated corresponding to the received data.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Listen for changes in the child - Update&lt;/h4&gt;
+
+&lt;p&gt;As we had seen, the above code provides a method to listen on changes made to the child data. We update our code on &lt;code&gt;onChildChanged&lt;/code&gt; method to publish updates and show it to the user.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+    String changedKey = dataSnapshot.getKey();
+    int changedIndex = keysArray.indexOf(changedKey);
+    String keyAndValue = &amp;quot;Key: &amp;quot; +dataSnapshot.getKey().toString() + &amp;quot;\t Value: &amp;quot; + dataSnapshot.getValue().toString();
+    displayArray.set(changedIndex,keyAndValue);
+    updateListView();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Deleting a child - Delete&lt;/h4&gt;
+
+&lt;p&gt;Now we uncomment &lt;code&gt;itemClickListener&lt;/code&gt; for the listview. On click of an item in list view we delete the data based on the given &lt;code&gt;name&lt;/code&gt;(Key).&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView&amp;lt;?&amp;gt; parent, View view, int position, long id) {
+        String clickedKey = keysArray.get(position);
+        myFirebaseRef.child(clickedKey).removeValue();
+    }
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And again we override the &lt;code&gt;onChildRemoved&lt;/code&gt; function and update the view&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+public void onChildRemoved(DataSnapshot dataSnapshot) {
+    String deletedKey = dataSnapshot.getKey();
+    int removedIndex = keysArray.indexOf(deletedKey);
+    keysArray.remove(removedIndex);
+    displayArray.remove(removedIndex);
+    updateListView();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;You can find the source code of the entire sample over here, &lt;a href=&quot;https://github.com/shrikanthkr/FirebaseCRUD&quot;&gt;Firebase CRUD&lt;/a&gt; with few miscellaneous functions,&lt;/p&gt;
+</description>
+        <pubDate>Wed, 09 Sep 2015 20:04:25 +0530</pubDate>
+        <link>http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</guid>
+        
+        <category>android,</category>
+        
+        <category>firebase,</category>
+        
+        <category>firebase</category>
+        
+        <category>android,</category>
+        
+        <category>firebase</category>
+        
+        <category>sdk</category>
+        
+        
+        <category>android</category>
+        
+      </item>
     
       <item>
         <title>Basics of Android GCM</title>
@@ -32,7 +297,7 @@
 &lt;li&gt;Server API Key (&lt;em&gt;XIzaSyBDRJ00YJbTE011CbWWjlcKYUGI3eLccdI&lt;/em&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Please refer &lt;a href=&quot;https://developers.google.com/console/help/new/#creatingdeletingprojects&quot;&gt;Create Project&lt;/a&gt; on creating a new project and &lt;a href=&quot;https://developers.google.com/console/help/new/#api-keys&quot;&gt;Generate API Key&lt;/a&gt; for generating a Server key(API Key)&lt;/p&gt;
+&lt;p&gt;Refer to &lt;a href=&quot;https://developers.google.com/console/help/new/#creatingdeletingprojects&quot;&gt;Create Project&lt;/a&gt; on creating a new project and &lt;a href=&quot;https://developers.google.com/console/help/new/#api-keys&quot;&gt;Generate API Key&lt;/a&gt; for generating a Server key(API Key)&lt;/p&gt;
 
 &lt;p&gt;Once we have all the required data we can start with our client registration process.&lt;/p&gt;
 
