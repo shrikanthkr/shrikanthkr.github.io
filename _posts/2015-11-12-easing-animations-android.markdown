@@ -4,7 +4,7 @@ title:  "Basics of Easing Animations in android"
 date:   2015-11-12 14:34:25
 categories: android
 tags: android, easing, animation
-image: /assets/article_images/firebase-crud-android/bg.jpg
+image: /assets/article_images/easing-animations-android/bg.gif
 
 --- 
 
