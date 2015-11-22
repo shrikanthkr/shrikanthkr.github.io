@@ -6,9 +6,218 @@
 </description>
     <link>http://shrikanthkr.github.io/</link>
     <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 09 Sep 2015 16:01:42 +0530</pubDate>
-    <lastBuildDate>Wed, 09 Sep 2015 16:01:42 +0530</lastBuildDate>
+    <pubDate>Sun, 22 Nov 2015 13:53:24 +0530</pubDate>
+    <lastBuildDate>Sun, 22 Nov 2015 13:53:24 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Basics of Easing Animations in android</title>
+        <description>&lt;p&gt;An easing function describes the value of a property given a percentage of completeness. Thanks to &lt;a href=&quot;https://www.linkedin.com/in/robertpenner&quot;&gt;Robert Penner&lt;/a&gt; for defining equations which drove animations with ease. &lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;How do we do this android ? First lets see how we do animations with ValueAnimator.&lt;/p&gt;
+
+&lt;h4&gt;Setting up Activity&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/MainActivity.java
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button click;
+View view;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    view = (View)findViewById(R.id.view);
+    click = (Button)findViewById(R.id.button);
+    click.setOnClickListener(clickListener);
+}
+View.OnClickListener clickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ease();&lt;br&gt;
+    }
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Our XML layout&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;View
+    android:id=&amp;quot;@+id/view&amp;quot;
+    android:layout_width=&amp;quot;80dp&amp;quot;
+    android:layout_height=&amp;quot;80dp&amp;quot;
+    android:background=&amp;quot;@android:color/holo_blue_bright&amp;quot;/&amp;gt;
+&amp;lt;Button
+    android:id=&amp;quot;@+id/button&amp;quot;
+    android:text=&amp;quot;Click&amp;quot;
+    android:layout_width=&amp;quot;match_parent&amp;quot;
+    android:layout_alignParentBottom=&amp;quot;true&amp;quot;
+    android:layout_height=&amp;quot;60dp&amp;quot;/&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Setup simple Animation&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://developer.android.com/reference/android/animation/ValueAnimator.html&quot;&gt;ValueAnimator&lt;/a&gt; class provides a simple timing engine for running animations which calculate animated values and set them on target objects .
+&lt;a href=&quot;http://developer.android.com/reference/android/animation/AnimatorSet.html&quot;&gt;AnimatorSet&lt;/a&gt; class plays a set of Animator objects in the specified order. Animations can be set up to play together, in sequence, or after a specified delay.&lt;/p&gt;
+
+&lt;p&gt;We will be using these two classes to make our first animation.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/MainActivity.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void ease() {
+    AnimatorSet animatorSet = new AnimatorSet();
+    ValueAnimator valueAnimatorX = ValueAnimator.ofFloat(fromX,toX, fromX);
+    valueAnimatorX.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        @Override
+        public void onAnimationUpdate(ValueAnimator animation) {
+            view.setTranslationX((float) animation.getAnimatedValue());
+        }
+    });
+    animatorSet.playTogether(valueAnimatorX);
+    animatorSet.setDuration(1500);
+    animatorSet.start();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;center&gt; &lt;img src=&quot;/assets/article_images/easing-animations-android/linear.gif&quot; alt=&quot;Linear Animation&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;This animations seems so boring. We need somthing cool.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Easing to make it awesome&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://developer.android.com/reference/android/animation/ValueAnimator.html&quot;&gt;ValueAnimator&lt;/a&gt; class accepts an evaluator, which defines on how the value is derived. So we make use of &lt;code&gt;setEvaluator&lt;/code&gt; function and put our easing equations there to get the desired animation.&lt;/p&gt;
+
+&lt;p&gt;So make a class &lt;code&gt;Easing&lt;/code&gt; implementing TypeEvaluator&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/Easing.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class Easing implements TypeEvaluator&amp;lt;Number&amp;gt; {
+    @Override
+    public Number evaluate(float fraction, Number startValue, Number endValue) {
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now we have the evaluate methods which tell the &lt;code&gt;ValueAnimator&lt;/code&gt; on how it should evaluate.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/Easing.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;/**   &lt;br&gt;
+* Converts params to calculate easing values&lt;br&gt;
+* @param fraction&lt;br&gt;
+* @param startValue&lt;br&gt;
+* @param endValue&lt;br&gt;
+* @return&lt;br&gt;
+*/&lt;br&gt;&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+public Number evaluate(float fraction, Number startValue, Number endValue) {
+    float t = duration * fraction;
+    float b = startValue.floatValue();
+    float c = endValue.floatValue() - startValue.floatValue();
+    float d = duration;
+    float result = calculate(t,b,c,d);
+    return result;
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What&amp;#39;s the calculate method here? 
+This method decides which easing equation we are going to use. There is a lot mentioned about equations &lt;a href=&quot;http://gizma.com/easing/&quot;&gt;here&lt;/a&gt;. You can edit this method based on any of the equations given and get your desired animation.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/Easing.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;/**&lt;br&gt;
+*&lt;br&gt;
+* @param t - Current Time&lt;br&gt;
+* @param b - Start Value&lt;br&gt;
+* @param c - Change in value&lt;br&gt;
+* @param d - Duration&lt;br&gt;
+* @return value calculated for cubic ease-in-out&lt;br&gt;
+*/&lt;br&gt;&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public float calculate(float t, float b, float c, float d){
+    t /= d/2;
+    if (t &amp;lt; 1) {
+        return c/2*t*t*t + b;
+    }
+    t -= 2;
+    return c/2*(t*t*t + 2) + b;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;Update MainAcvitity&lt;/h4&gt;
+
+&lt;p&gt;Now we are good with the &lt;code&gt;Easing&lt;/code&gt; class and ready to include it in our &lt;code&gt;ValueAnimator&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;app/package.name/MainActvity.java&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void ease() {
+    Easing easing = new Easing(1500);
+    ...
+    valueAnimatorX.setEvaluator(easing);
+    valueAnimatorX.addUpdateListener(...)
+    ...
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Uh! is that enough ? 
+&lt;table&gt;
+    &lt;tr&gt;
+    &lt;td&gt;
+        &lt;center&gt; &lt;img src=&quot;/assets/article_images/easing-animations-android/linear.gif&quot; alt=&quot;Linear Animation&quot;&gt;&lt;/center&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;center&gt; &lt;img src=&quot;/assets/article_images/easing-animations-android/ease.gif&quot; alt=&quot;Easing Animation&quot;&gt;&lt;/center&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Find the source code of the entire sample over here, &lt;a href=&quot;https://github.com/shrikanthkr/SimpleEasingAndroid&quot;&gt;Easing on Android&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/daimajia/AnimationEasingFunctions&quot;&gt;AnimationEasingFunctions&lt;/a&gt; seems an awesome library to make easing animatons easier and lively.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 12 Nov 2015 20:04:25 +0530</pubDate>
+        <link>http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</guid>
+        
+        <category>android,</category>
+        
+        <category>easing,</category>
+        
+        <category>animation</category>
+        
+        
+        <category>android</category>
+        
+      </item>
     
       <item>
         <title>CRUD on Android with Firebase API</title>
