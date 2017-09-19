@@ -4,11 +4,11 @@
     <title>Blog</title>
     <description>How did I do
 </description>
-    <link>http://shrikanthkr.github.io/</link>
-    <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 22 Nov 2015 14:00:00 +0530</pubDate>
-    <lastBuildDate>Sun, 22 Nov 2015 14:00:00 +0530</lastBuildDate>
-    <generator>Jekyll v2.4.0</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 19 Sep 2017 21:55:31 +0530</pubDate>
+    <lastBuildDate>Tue, 19 Sep 2017 21:55:31 +0530</lastBuildDate>
+    <generator>Jekyll v3.5.2</generator>
     
       <item>
         <title>Basics of Easing Animations in android</title>
@@ -23,7 +23,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;app/package.name/MainActivity.java
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button click;
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;Button click;
 View view;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ View.OnClickListener clickListener = new View.OnClickListener() {
 &lt;p&gt;Our XML layout&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;View
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;View
     android:id=&amp;quot;@+id/view&amp;quot;
     android:layout_width=&amp;quot;80dp&amp;quot;
     android:layout_height=&amp;quot;80dp&amp;quot;
@@ -73,7 +73,7 @@ View.OnClickListener clickListener = new View.OnClickListener() {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void ease() {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;private void ease() {
     AnimatorSet animatorSet = new AnimatorSet();
     ValueAnimator valueAnimatorX = ValueAnimator.ofFloat(fromX,toX, fromX);
     valueAnimatorX.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -105,7 +105,7 @@ View.OnClickListener clickListener = new View.OnClickListener() {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class Easing implements TypeEvaluator&amp;lt;Number&amp;gt; {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;public class Easing implements TypeEvaluator&amp;lt;Number&amp;gt; {
     @Override
     public Number evaluate(float fraction, Number startValue, Number endValue) {
     }
@@ -127,7 +127,7 @@ View.OnClickListener clickListener = new View.OnClickListener() {
 */&lt;br&gt;&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;@Override
 public Number evaluate(float fraction, Number startValue, Number endValue) {
     float t = duration * fraction;
     float b = startValue.floatValue();
@@ -156,7 +156,7 @@ This method decides which easing equation we are going to use. There is a lot me
 */&lt;br&gt;&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public float calculate(float t, float b, float c, float d){
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;public float calculate(float t, float b, float c, float d){
     t /= d/2;
     if (t &amp;lt; 1) {
         return c/2*t*t*t + b;
@@ -177,7 +177,7 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void ease() {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;private void ease() {
     Easing easing = new Easing(1500);
     ...
     valueAnimatorX.setEvaluator(easing);
@@ -205,8 +205,8 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;p&gt;&lt;a href=&quot;https://github.com/daimajia/AnimationEasingFunctions&quot;&gt;AnimationEasingFunctions&lt;/a&gt; seems an awesome library to make easing animatons easier and lively.&lt;/p&gt;
 </description>
         <pubDate>Thu, 12 Nov 2015 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</guid>
+        <link>http://localhost:4000/android/2015/11/12/easing-animations-android.html</link>
+        <guid isPermaLink="true">http://localhost:4000/android/2015/11/12/easing-animations-android.html</guid>
         
         <category>android,</category>
         
@@ -232,7 +232,7 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;blockquote&gt;
 &lt;p&gt;app/build.gradle
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;dependencies {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;dependencies {
     compile &amp;#39;com.firebase:firebase-client-android:2.3.1+&amp;#39;
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;&lt;/p&gt;
@@ -241,7 +241,7 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;p&gt;Incase you end up with build errors, &lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;android {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;android {
     ...
     packagingOptions {
     exclude &amp;#39;META-INF/LICENSE&amp;#39;
@@ -258,7 +258,7 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;blockquote&gt;
 &lt;p&gt;app/src/main/AndroidManifest.xml 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -268,7 +268,7 @@ This method decides which easing equation we are going to use. There is a lot me
 
 &lt;p&gt;Two &lt;code&gt;EditText&lt;/code&gt; components,  a &lt;code&gt;ListView&lt;/code&gt; and a &lt;code&gt;Button&lt;/code&gt;. These &lt;code&gt;EditText&lt;/code&gt; components holds the &lt;code&gt;name&lt;/code&gt;(key) and the &lt;code&gt;message&lt;/code&gt;(value) to be saved. &lt;code&gt;Button&lt;/code&gt; is used to trigger the save action using &lt;strong&gt;Firebase&lt;/strong&gt; sdk and a &lt;code&gt;ListView&lt;/code&gt; to display the data.
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;EditText
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;EditText
     android:layout&lt;em&gt;width=&amp;quot;fill&lt;/em&gt;parent&amp;quot;
     android:layout&lt;em&gt;height=&amp;quot;60dp&amp;quot;
     android:hint=&amp;quot;Enter Name&amp;quot;
@@ -307,7 +307,7 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;p&gt;Declare necessary attributes.&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button save;
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;Button save;
 static Firebase myFirebaseRef;
 EditText nameEditText;
 EditText messageEditText;
@@ -322,7 +322,7 @@ ListView listView;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The OnCreate Function&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;@Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -352,7 +352,7 @@ protected void onCreate(Bundle savedInstanceState) {
 &lt;p&gt;Adding click Listener to fire save action&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;@Override
 public void onClick(View v) {
     switch (v.getId()){
         case R.id.save:
@@ -385,7 +385,7 @@ private void save(String name,String message){
 &lt;p&gt;Events which we could listen to are &lt;code&gt;onChildAdded&lt;/code&gt;, &lt;code&gt;onChildChanged&lt;/code&gt;, &lt;code&gt;onChildRemoved&lt;/code&gt;, &lt;code&gt;onChildMoved&lt;/code&gt;, &lt;code&gt;onCancelled&lt;/code&gt;. &lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;ChildEventListener childEventListener = new ChildEventListener() {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;ChildEventListener childEventListener = new ChildEventListener() {
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         Log.d(TAG, dataSnapshot.getKey() + &amp;quot;:&amp;quot; + dataSnapshot.getValue().toString());
@@ -420,7 +420,7 @@ private void updateListView(){
 &lt;p&gt;As we had seen, the above code provides a method to listen on changes made to the child data. We update our code on &lt;code&gt;onChildChanged&lt;/code&gt; method to publish updates and show it to the user.&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;@Override
 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
     String changedKey = dataSnapshot.getKey();
     int changedIndex = keysArray.indexOf(changedKey);
@@ -437,7 +437,7 @@ public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 &lt;p&gt;Now we uncomment &lt;code&gt;itemClickListener&lt;/code&gt; for the listview. On click of an item in list view we delete the data based on the given &lt;code&gt;name&lt;/code&gt;(Key).&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
     @Override
     public void onItemClick(AdapterView&amp;lt;?&amp;gt; parent, View view, int position, long id) {
         String clickedKey = keysArray.get(position);
@@ -449,7 +449,7 @@ public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 &lt;p&gt;And again we override the &lt;code&gt;onChildRemoved&lt;/code&gt; function and update the view&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;@Override
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;@Override
 public void onChildRemoved(DataSnapshot dataSnapshot) {
     String deletedKey = dataSnapshot.getKey();
     int removedIndex = keysArray.indexOf(deletedKey);
@@ -464,8 +464,8 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;p&gt;You can find the source code of the entire sample over here, &lt;a href=&quot;https://github.com/shrikanthkr/FirebaseCRUD&quot;&gt;Firebase CRUD&lt;/a&gt; with few miscellaneous functions,&lt;/p&gt;
 </description>
         <pubDate>Wed, 09 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</guid>
+        <link>http://localhost:4000/android/2015/09/09/firebase-crud-android.html</link>
+        <guid isPermaLink="true">http://localhost:4000/android/2015/09/09/firebase-crud-android.html</guid>
         
         <category>android,</category>
         
@@ -519,7 +519,7 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;dependencies {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;dependencies {
     compile fileTree(dir: &amp;#39;libs&amp;#39;, include: [&amp;#39;*.jar&amp;#39;])
     compile &amp;#39;com.android.support:appcompat-v7:21.0.3&amp;#39;
     compile &amp;#39;com.google.android.gms:play-services:6.5.87&amp;#39;
@@ -535,7 +535,7 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&amp;gt;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;manifest xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&amp;gt;
     ...
     &amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;
     &amp;lt;uses-permission android:name=&amp;quot;android.permission.WAKE_LOCK&amp;quot; /&amp;gt;
@@ -557,7 +557,7 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
                 xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;
                 android:layout_width=&amp;quot;match_parent&amp;quot;
                 android:layout_height=&amp;quot;match_parent&amp;quot;
@@ -587,7 +587,7 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;p&gt;Declaring necessary variables and functions&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;Button register_button;
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;Button register_button;
 String PROJECT_NUMBER = &amp;quot;845696541232&amp;quot;;
 GoogleCloudMessaging gcmObj;
 String regId;
@@ -609,7 +609,7 @@ String regId;
 &lt;p&gt;Writing the registration function&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;private void registerInBackground() {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;private void registerInBackground() {
     new AsyncTask&amp;lt;Void, Void, String&amp;gt;() {
         @Override
         protected String doInBackground(Void... params) {
@@ -650,7 +650,7 @@ String regId;
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;{
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;{
   &amp;quot;dependencies&amp;quot;: {
     &amp;quot;node-gcm&amp;quot;: &amp;quot;git+https://github.com/ToothlessGear/node-gcm.git&amp;quot;
   }
@@ -664,7 +664,7 @@ String regId;
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;var gcm = require(&amp;#39;node-gcm&amp;#39;);
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;var gcm = require(&amp;#39;node-gcm&amp;#39;);
 var message = new gcm.Message();
 message.addData(&amp;#39;key1&amp;#39;, &amp;#39;Awesome World!!&amp;#39;); /*Message to the client*/
 
@@ -692,7 +692,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;p&gt;Receiver code stating the necessary service &lt;code&gt;(GCMIntentService)&lt;/code&gt; to be triggered.&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class GCMReceiver extends WakefulBroadcastReceiver{
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;public class GCMReceiver extends WakefulBroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         ComponentName comp = new ComponentName(context.getPackageName(),GCMIntentService.class.getName());
@@ -711,7 +711,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;receiver
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;receiver
     android:name=&amp;quot;.GCMReceiver&amp;quot;
     android:exported=&amp;quot;true&amp;quot;
     android:permission=&amp;quot;com.google.android.c2dm.permission.SEND&amp;quot; &amp;gt;
@@ -731,7 +731,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;p&gt;Service code for handling the notifications part. Here &lt;code&gt;MESSAGE_KEY&lt;/code&gt; is the expected key that is set from the server. &lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;public class GCMIntentService extends IntentService {
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;public class GCMIntentService extends IntentService {
     String MESSAGE_KEY = &amp;quot;key1&amp;quot;;
     public GCMIntentService() {
         super(&amp;quot;Message&amp;quot;);
@@ -776,7 +776,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;/blockquote&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;service
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;service
     android:name=&amp;quot;.GCMIntentService&amp;quot;
     android:exported=&amp;quot;false&amp;quot; &amp;gt;
     &amp;lt;intent-filter&amp;gt;
@@ -790,8 +790,8 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;p&gt;Now we are ready to check if our GCM component is working. Run the app in a device connected to internet, and open your server project folder from termial. Run &lt;code&gt;node node-gcm-sample.js&lt;/code&gt;.Source code for &lt;a href=&quot;https://github.com/shrikanthkr/android-gcm-client&quot;&gt;Android Client&lt;/a&gt; and &lt;a href=&quot;https://github.com/shrikanthkr/node-gcm-sample&quot;&gt;Node Server&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 08 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</guid>
+        <link>http://localhost:4000/android/2015/09/08/android-gcm.html</link>
+        <guid isPermaLink="true">http://localhost:4000/android/2015/09/08/android-gcm.html</guid>
         
         <category>android,</category>
         
@@ -819,7 +819,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;blockquote&gt;
 &lt;p&gt;res/drawable/border.xml
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
 &amp;lt;layer-list xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&amp;gt;
 &amp;lt;item&amp;gt;&amp;lt;!--Item 1--&amp;gt;
     &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
@@ -843,7 +843,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;/ul&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;item&amp;gt;&amp;lt;!--Item 1--&amp;gt;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;item&amp;gt;&amp;lt;!--Item 1--&amp;gt;
     &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
         &amp;lt;stroke android:color=&amp;quot;@color/green&amp;quot; android:width=&amp;quot;2dp&amp;quot;/&amp;gt;
         &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
@@ -860,7 +860,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;/ul&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-markup&#39;&gt;&amp;lt;item android:top=&amp;quot;2dp&amp;quot; android:bottom=&amp;quot;2dp&amp;quot;&amp;gt;&amp;lt;!--Item 2--&amp;gt;
+  &lt;pre data-line=''&gt;&lt;code class='language-markup'&gt;&amp;lt;item android:top=&amp;quot;2dp&amp;quot; android:bottom=&amp;quot;2dp&amp;quot;&amp;gt;&amp;lt;!--Item 2--&amp;gt;
     &amp;lt;shape android:shape=&amp;quot;rectangle&amp;quot;&amp;gt;
         &amp;lt;solid android:color=&amp;quot;#FFFFFFFF&amp;quot; /&amp;gt;
     &amp;lt;/shape&amp;gt;
@@ -872,8 +872,8 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;h5&gt;&lt;img src=&quot;/assets/article_images/borders-android/both-layers.png&quot; alt=&quot;Layer One And Two&quot;&gt;&lt;/h5&gt;
 </description>
         <pubDate>Mon, 07 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</guid>
+        <link>http://localhost:4000/android/2015/09/07/borders-android.html</link>
+        <guid isPermaLink="true">http://localhost:4000/android/2015/09/07/borders-android.html</guid>
         
         <category>android,</category>
         
@@ -891,7 +891,7 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-ruby&#39;&gt;def print_hi(name)
+  &lt;pre data-line=''&gt;&lt;code class='language-ruby'&gt;def print_hi(name)
   puts &amp;quot;Hi, #{name}&amp;quot;
 end
 print_hi(&amp;#39;Tom&amp;#39;)
@@ -901,7 +901,7 @@ print_hi(&amp;#39;Tom&amp;#39;)
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div&gt;
-  &lt;pre data-line=&#39;&#39;&gt;&lt;code class=&#39;language-javascript&#39;&gt;var obj = { &amp;#39;foo&amp;#39;: true, &amp;#39;bar&amp;#39;: false };
+  &lt;pre data-line=''&gt;&lt;code class='language-javascript'&gt;var obj = { &amp;#39;foo&amp;#39;: true, &amp;#39;bar&amp;#39;: false };
 
 for (key in obj) {
   console.log(obj[key]);
@@ -909,8 +909,8 @@ for (key in obj) {
 &lt;/div&gt;
 </description>
         <pubDate>Fri, 29 Aug 2014 20:04:25 +0530</pubDate>
-        <link>http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
-        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
+        <link>http://localhost:4000/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
         
         <category>featured</category>
         

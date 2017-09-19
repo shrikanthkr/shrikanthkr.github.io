@@ -54,5 +54,5 @@ social:
 
 # Plugins
 whitelist: []
-gems:      [prism]
+gems:      [prism, jekyll-paginate]
 excerpt_separator: "`"
