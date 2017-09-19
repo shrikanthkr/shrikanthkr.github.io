@@ -4,10 +4,10 @@
     <title>Blog</title>
     <description>How did I do
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 19 Sep 2017 21:55:31 +0530</pubDate>
-    <lastBuildDate>Tue, 19 Sep 2017 21:55:31 +0530</lastBuildDate>
+    <link>http://shrikanthkr.github.io/</link>
+    <atom:link href="http://shrikanthkr.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 19 Sep 2017 22:00:03 +0530</pubDate>
+    <lastBuildDate>Tue, 19 Sep 2017 22:00:03 +0530</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
@@ -205,8 +205,8 @@ This method decides which easing equation we are going to use. There is a lot me
 &lt;p&gt;&lt;a href=&quot;https://github.com/daimajia/AnimationEasingFunctions&quot;&gt;AnimationEasingFunctions&lt;/a&gt; seems an awesome library to make easing animatons easier and lively.&lt;/p&gt;
 </description>
         <pubDate>Thu, 12 Nov 2015 20:04:25 +0530</pubDate>
-        <link>http://localhost:4000/android/2015/11/12/easing-animations-android.html</link>
-        <guid isPermaLink="true">http://localhost:4000/android/2015/11/12/easing-animations-android.html</guid>
+        <link>http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/11/12/easing-animations-android.html</guid>
         
         <category>android,</category>
         
@@ -464,8 +464,8 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 &lt;p&gt;You can find the source code of the entire sample over here, &lt;a href=&quot;https://github.com/shrikanthkr/FirebaseCRUD&quot;&gt;Firebase CRUD&lt;/a&gt; with few miscellaneous functions,&lt;/p&gt;
 </description>
         <pubDate>Wed, 09 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://localhost:4000/android/2015/09/09/firebase-crud-android.html</link>
-        <guid isPermaLink="true">http://localhost:4000/android/2015/09/09/firebase-crud-android.html</guid>
+        <link>http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/09/firebase-crud-android.html</guid>
         
         <category>android,</category>
         
@@ -790,8 +790,8 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;p&gt;Now we are ready to check if our GCM component is working. Run the app in a device connected to internet, and open your server project folder from termial. Run &lt;code&gt;node node-gcm-sample.js&lt;/code&gt;.Source code for &lt;a href=&quot;https://github.com/shrikanthkr/android-gcm-client&quot;&gt;Android Client&lt;/a&gt; and &lt;a href=&quot;https://github.com/shrikanthkr/node-gcm-sample&quot;&gt;Node Server&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 08 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://localhost:4000/android/2015/09/08/android-gcm.html</link>
-        <guid isPermaLink="true">http://localhost:4000/android/2015/09/08/android-gcm.html</guid>
+        <link>http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/08/android-gcm.html</guid>
         
         <category>android,</category>
         
@@ -872,8 +872,8 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
 &lt;h5&gt;&lt;img src=&quot;/assets/article_images/borders-android/both-layers.png&quot; alt=&quot;Layer One And Two&quot;&gt;&lt;/h5&gt;
 </description>
         <pubDate>Mon, 07 Sep 2015 20:04:25 +0530</pubDate>
-        <link>http://localhost:4000/android/2015/09/07/borders-android.html</link>
-        <guid isPermaLink="true">http://localhost:4000/android/2015/09/07/borders-android.html</guid>
+        <link>http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/android/2015/09/07/borders-android.html</guid>
         
         <category>android,</category>
         
@@ -909,8 +909,8 @@ for (key in obj) {
 &lt;/div&gt;
 </description>
         <pubDate>Fri, 29 Aug 2014 20:04:25 +0530</pubDate>
-        <link>http://localhost:4000/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
+        <link>http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</link>
+        <guid isPermaLink="true">http://shrikanthkr.github.io/jekyll/update/2014/08/29/welcome-to-jekyll-shri.html</guid>
         
         <category>featured</category>
         
