@@ -19,7 +19,7 @@ How do we do this android ? First lets see how we do animations with ValueAnimat
 
 > app/package.name/MainActivity.java
 
-{% highlight java%}
+{% highlight javascript %}
 Button click;
 View view;
 @Override
@@ -106,15 +106,17 @@ public class Easing implements TypeEvaluator<Number> {
 Now we have the evaluate methods which tell the `ValueAnimator` on how it should evaluate.
 > app/package.name/Easing.java
 
-/**   <br>
-* Converts params to calculate easing values<br>
-* @param fraction<br>
-* @param startValue<br>
-* @param endValue<br>
-* @return<br>
-*/<br>
+
 
 {% highlight javascript %}
+/**  
+* Converts params to calculate easing values
+* @param fraction
+* @param startValue
+* @param endValue
+* @return
+*/
+
 @Override
 public Number evaluate(float fraction, Number startValue, Number endValue) {
 	float t = duration * fraction;
@@ -132,16 +134,16 @@ What's the calculate method here?
 This method decides which easing equation we are going to use. There is a lot mentioned about equations [here][gizma-easing-equations]. You can edit this method based on any of the equations given and get your desired animation.
 > app/package.name/Easing.java
 
-/**<br>
-*<br>
-* @param t - Current Time<br>
-* @param b - Start Value<br>
-* @param c - Change in value<br>
-* @param d - Duration<br>
-* @return value calculated for cubic ease-in-out<br>
-*/<br>
 
 {% highlight javascript %}
+/**
+* @param t - Current Time
+* @param b - Start Value
+* @param c - Change in value
+* @param d - Duration
+* @return value calculated for cubic ease-in-out
+*/
+
 public float calculate(float t, float b, float c, float d){
 	t /= d/2;
 	if (t < 1) {
@@ -170,16 +172,10 @@ private void ease() {
 {% endhighlight %}
 
 Uh! is that enough ? 
-<table>
-	<tr>
-	<td>
-		<center> ![Linear Animation](/assets/article_images/easing-animations-android/linear.gif)</center>
-	</td>
-	<td>
-		<center> ![Easing Animation](/assets/article_images/easing-animations-android/ease.gif)</center>
-	</td>
-	</tr>
-</table>
+
+
+|---|---|
+|![Linear Animation](/assets/article_images/easing-animations-android/linear.gif) |  ![Easing Animation](/assets/article_images/easing-animations-android/ease.gif)|
 
 
 ---

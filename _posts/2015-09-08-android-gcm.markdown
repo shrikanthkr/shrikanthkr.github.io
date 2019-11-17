@@ -67,7 +67,7 @@ The client part has an interface with a registration button. On click of the but
 
 > res/layout/activity_main.xml
 
-{% highlight markup %}
+{% highlight xml %}
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -97,7 +97,7 @@ The client part has an interface with a registration button. On click of the but
 
 Declaring necessary variables and functions
 
-{% highlight javascript %}
+{% highlight java %}
 Button register_button;
 String PROJECT_NUMBER = "845696541232";
 GoogleCloudMessaging gcmObj;
@@ -119,7 +119,7 @@ String regId;
 
 Writing the registration function
 
-{% highlight javascript %}
+{% highlight java %}
 private void registerInBackground() {
 	new AsyncTask<Void, Void, String>() {
 		@Override
@@ -156,7 +156,7 @@ The sample server code here is written in Nodejs. Using `node-gcm` library we ca
 
 > package.json
 
-{% highlight javascript %}
+{% highlight gradle %}
 {
   "dependencies": {
     "node-gcm": "git+https://github.com/ToothlessGear/node-gcm.git"
@@ -196,7 +196,7 @@ Now we enter into the last part of preparing our client to receive notifications
 
 Receiver code stating the necessary service `(GCMIntentService)` to be triggered.
 
-{% highlight javascript %}
+{% highlight java %}
 public class GCMReceiver extends WakefulBroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -213,7 +213,7 @@ Update Androidmanifest
 
 > app/src/main/Androidmanifest.xml
 
-{% highlight markup %}
+{% highlight xml %}
 <receiver
 	android:name=".GCMReceiver"
 	android:exported="true"
@@ -231,7 +231,7 @@ Update Androidmanifest
 
 Service code for handling the notifications part. Here `MESSAGE_KEY` is the expected key that is set from the server. 
 
-{% highlight javascript %}
+{% highlight java %}
 public class GCMIntentService extends IntentService {
 	String MESSAGE_KEY = "key1";
 	public GCMIntentService() {
@@ -275,7 +275,7 @@ Update Androidmanifest
 
 > app/src/main/Androidmanifest.xml
 
-{% highlight markup %}
+{% highlight xml %}
 <service
 	android:name=".GCMIntentService"
 	android:exported="false" >

@@ -15,7 +15,7 @@ To draw borders we have to understand the basics of layer-list drawable componen
 Code snippet to draw top and bottom borders:
 
 > res/drawable/border.xml
-{% highlight markup%}
+{% highlight xml%}
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 <item><!--Item 1-->
@@ -36,7 +36,7 @@ Code snippet to draw top and bottom borders:
 
 + Layer One
 
-{% highlight markup  %}
+{% highlight xml  %}
 <item><!--Item 1-->
 	<shape android:shape="rectangle">
 		<stroke android:color="@color/green" android:width="2dp"/>
@@ -50,7 +50,7 @@ Above code snippet results in a layer with border on all sides. **Stroke** tag d
 
 + Layer Two
 
-{% highlight markup  %}
+{% highlight xml  %}
 <item android:top="2dp" android:bottom="2dp"><!--Item 2-->
 	<shape android:shape="rectangle">
 		<solid android:color="#FFFFFFFF" />

@@ -18,7 +18,7 @@ Once you have an account with [Firebase][firebase], create an `app` and note dow
 
 
 > app/build.gradle
-{% highlight javascript%}
+{% highlight gradle%}
 dependencies {
 	compile 'com.firebase:firebase-client-android:2.3.1+'
 }
@@ -26,7 +26,7 @@ dependencies {
 
 Incase you end up with build errors, 
 
-{% highlight javascript %}
+{% highlight gradle %}
 android {
 	...
 	packagingOptions {
@@ -91,7 +91,7 @@ Two `EditText` components,  a `ListView` and a `Button`. These `EditText` compon
 
 Declare necessary attributes.
 
-{% highlight javascript %}
+{% highlight java %}
 Button save;
 static Firebase myFirebaseRef;
 EditText nameEditText;

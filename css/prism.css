@@ -47,10 +47,11 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+pre {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
+	background: #f5f2f0;
 }
 
 :not(pre) > code[class*="language-"],
