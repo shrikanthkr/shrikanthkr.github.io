@@ -15,7 +15,7 @@ To draw borders we have to understand the basics of layer-list drawable componen
 Code snippet to draw top and bottom borders:
 
 > res/drawable/border.xml
-{% prism markup%}
+{% highlight markup%}
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 <item><!--Item 1-->
@@ -30,36 +30,36 @@ Code snippet to draw top and bottom borders:
 	</shape>
 </item>
 </layer-list>
-{% endprism %}
+{% endhighlight %}
 
-#####How layer list works?
+#### #How layer list works?
 
 + Layer One
 
-{% prism markup  %}
+{% highlight markup  %}
 <item><!--Item 1-->
 	<shape android:shape="rectangle">
 		<stroke android:color="@color/green" android:width="2dp"/>
 		<solid android:color="#FFFFFFFF" />
 	</shape>
 </item>
-{% endprism %}
+{% endhighlight %}
 
 Above code snippet results in a layer with border on all sides. **Stroke** tag defines the border and **Solid** tag defines the background colour.
-#####![Layer One](/assets/article_images/borders-android/layer-one.png)
+#### #![Layer One](/assets/article_images/borders-android/layer-one.png)
 
 + Layer Two
 
-{% prism markup  %}
+{% highlight markup  %}
 <item android:top="2dp" android:bottom="2dp"><!--Item 2-->
 	<shape android:shape="rectangle">
 		<solid android:color="#FFFFFFFF" />
 	</shape>
 </item>
-{% endprism %}
+{% endhighlight %}
 
 This snippet is drawn over the first layer which has top offset 2dp and bottom offset 2dp (border thickness)
-#####![Layer One And Two](/assets/article_images/borders-android/both-layers.png)
+#### #![Layer One And Two](/assets/article_images/borders-android/both-layers.png)
 
 [developers-android-layer-list]:http://developer.android.com/guide/topics/resources/drawable-resource.html#LayerList
 [jekyll]:      http://jekyllrb.com

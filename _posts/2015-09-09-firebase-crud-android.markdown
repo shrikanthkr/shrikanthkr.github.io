@@ -14,19 +14,19 @@ Firebase provides a powerful API to **store, retrieve and sync** data in realtim
 
 Once you have an account with [Firebase][firebase], create an `app` and note down the `app's` URL. This `app` URL will be used in our android application as the base URL to firebase.
 
-####Adding Dependencies
+#### Adding Dependencies
 
 
 > app/build.gradle
-{% prism javascript%}
+{% highlight javascript%}
 dependencies {
 	compile 'com.firebase:firebase-client-android:2.3.1+'
 }
-{% endprism %}
+{% endhighlight %}
 
 Incase you end up with build errors, 
 
-{% prism javascript %}
+{% highlight javascript %}
 android {
 	...
 	packagingOptions {
@@ -35,23 +35,23 @@ android {
 	exclude 'META-INF/NOTICE'
 	}
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Adding Permissions
+#### Adding Permissions
 
 > app/src/main/AndroidManifest.xml 
-{% prism markup %}
+{% highlight markup %}
 <uses-permission android:name="android.permission.INTERNET" />
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Necessary Layout Components
+#### Necessary Layout Components
 
 Two `EditText` components,  a `ListView` and a `Button`. These `EditText` components holds the `name`(key) and the `message`(value) to be saved. `Button` is used to trigger the save action using **Firebase** sdk and a `ListView` to display the data.
-{% prism markup %}
+{% highlight markup %}
 <EditText
 	android:layout_width="fill_parent"
 	android:layout_height="60dp"
@@ -83,15 +83,15 @@ Two `EditText` components,  a `ListView` and a `Button`. These `EditText` compon
 	android:layout_alignParentLeft="true"
 	android:layout_alignParentStart="true"/>
 
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Saving data on Firebase - Create
+#### Saving data on Firebase - Create
 
 Declare necessary attributes.
 
-{% prism javascript %}
+{% highlight javascript %}
 Button save;
 static Firebase myFirebaseRef;
 EditText nameEditText;
@@ -102,11 +102,11 @@ ArrayAdapter<String> valuesAdapter;
 ArrayList<String> displayArray;
 ArrayList<String> keysArray;
 ListView listView;
-{% endprism %}
+{% endhighlight %}
 
 The OnCreate Function
 
-{% prism javascript %}
+{% highlight javascript %}
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -132,11 +132,11 @@ protected void onCreate(Bundle savedInstanceState) {
 	myFirebaseRef = new Firebase("<appurl>");
 	/*myFirebaseRef.addChildEventListener(childEventListener);*/
 }
-{% endprism %}
+{% endhighlight %}
 
 Adding click Listener to fire save action
 
-{% prism javascript %}
+{% highlight javascript %}
 @Override
 public void onClick(View v) {
 	switch (v.getId()){
@@ -157,7 +157,7 @@ private void save(String name,String message){
 		}
 	});
 }
-{% endprism %}
+{% endhighlight %}
 
 We have saved our data to firebase and on our onComplete method above we empty the `edittext` boxes. So where do we actually read our data and update the view?
 
@@ -165,13 +165,13 @@ We have saved our data to firebase and on our onComplete method above we empty t
 
 
 
-####Read data from Firebase - Read
+#### Read data from Firebase - Read
 
 **Firebase** provides a ChildEventListener which pops up when ever a change occurs to the specified child to which the event is bound. In our case we bind it to the `myFirebaseRef`, which is commented out initially on our `onCreate` method. 
 
 Events which we could listen to are `onChildAdded`, `onChildChanged`, `onChildRemoved`, `onChildMoved`, `onCancelled`. 
 
-{% prism javascript %}
+{% highlight javascript %}
 ChildEventListener childEventListener = new ChildEventListener() {
 	@Override
 	public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -196,17 +196,17 @@ private void updateListView(){
 	listView.invalidate();
 	Log.d(TAG, "Length: " + displayArray.size());
 }
-{% endprism %}
+{% endhighlight %}
 
 Whenever a new child is added `onChildAdded` will get triggered and the view is updated corresponding to the received data.
 
 --- 
 
-####Listen for changes in the child - Update
+#### Listen for changes in the child - Update
 
 As we had seen, the above code provides a method to listen on changes made to the child data. We update our code on `onChildChanged` method to publish updates and show it to the user.
 
-{% prism javascript %}
+{% highlight javascript %}
 @Override
 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 	String changedKey = dataSnapshot.getKey();
@@ -215,15 +215,15 @@ public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 	displayArray.set(changedIndex,keyAndValue);
 	updateListView();
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Deleting a child - Delete
+#### Deleting a child - Delete
 
 Now we uncomment `itemClickListener` for the listview. On click of an item in list view we delete the data based on the given `name`(Key).
 
-{% prism javascript %}
+{% highlight javascript %}
 AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -231,11 +231,11 @@ AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickL
 		myFirebaseRef.child(clickedKey).removeValue();
 	}
 };
-{% endprism %}
+{% endhighlight %}
 
 And again we override the `onChildRemoved` function and update the view
 
-{% prism javascript %}
+{% highlight javascript %}
 @Override
 public void onChildRemoved(DataSnapshot dataSnapshot) {
 	String deletedKey = dataSnapshot.getKey();
@@ -244,7 +244,7 @@ public void onChildRemoved(DataSnapshot dataSnapshot) {
 	displayArray.remove(removedIndex);
 	updateListView();
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 

@@ -19,7 +19,7 @@ GCM basics involves four steps
 + Send notifications from Server to GCM with registration ID
 + Receive notifications on the client
 
-####Prerequisite 
+#### Prerequisite 
 
 - Project Number (_845696541232_)
 - Server API Key (_XIzaSyBDRJ00YJbTE011CbWWjlcKYUGI3eLccdI_)
@@ -28,26 +28,26 @@ Refer to [Create Project][create-project] on creating a new project and [Generat
 
 Once we have all the required data we can start with our client registration process.
 
-####Creating a new Project
+#### Creating a new Project
 
 Ensure that we have the necessary dependencies added.
 
 > app/build.gradle
 
-{% prism javascript %}
+{% highlight gradle %}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 
 Adding Permissions
 > app/src/main/Androidmanifest.xml
 
-{% prism markup %}
+{% highlight markup %}
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	...
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -57,17 +57,17 @@ Adding Permissions
 	<uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
 	...      
 </manifest>
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Registering the client (Android Device)
+#### Registering the client (Android Device)
 
 The client part has an interface with a registration button. On click of the button a call to GCM is made and `Registration ID` is obtained. While making the request it is necessary to note that we have the correct _**Project Number**_ from the developers console.
 
 > res/layout/activity_main.xml
 
-{% prism markup %}
+{% highlight markup %}
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -89,7 +89,7 @@ The client part has an interface with a registration button. On click of the but
 
 </RelativeLayout>
 
-{% endprism %}
+{% endhighlight %}
 
 ---
 
@@ -97,7 +97,7 @@ The client part has an interface with a registration button. On click of the but
 
 Declaring necessary variables and functions
 
-{% prism javascript %}
+{% highlight javascript %}
 Button register_button;
 String PROJECT_NUMBER = "845696541232";
 GoogleCloudMessaging gcmObj;
@@ -113,13 +113,13 @@ String regId;
         registerInBackground();
       }
     });
-{% endprism %}
+{% endhighlight %}
 
 ---
 
 Writing the registration function
 
-{% prism javascript %}
+{% highlight javascript %}
 private void registerInBackground() {
 	new AsyncTask<Void, Void, String>() {
 		@Override
@@ -139,15 +139,15 @@ private void registerInBackground() {
 		}
 	}.execute(null, null, null);
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 
-####Provide the registration ID to server
+#### Provide the registration ID to server
 
 Once the registration is successful,  `Registration ID` is obtained. This `Registration ID` is used by the server to send notifications to device. In our sample the `Registration ID` printed in logs is copied and used in the server part.
 
-####Send notifications from Server to GCM with _Registration ID_ (Server Part)
+#### Send notifications from Server to GCM with _Registration ID_ (Server Part)
 
 The sample server code here is written in Nodejs. Using `node-gcm` library we can easily send messages to **GCM**. The server part includes two files. 
 
@@ -156,19 +156,19 @@ The sample server code here is written in Nodejs. Using `node-gcm` library we ca
 
 > package.json
 
-{% prism javascript %}
+{% highlight javascript %}
 {
   "dependencies": {
     "node-gcm": "git+https://github.com/ToothlessGear/node-gcm.git"
   }
 }
-{% endprism%}
+{% endhighlight%}
 
 ---
 
 > node-gcm-sample.js
 
-{% prism javascript %}
+{% highlight javascript %}
 var gcm = require('node-gcm');
 var message = new gcm.Message();
 message.addData('key1', 'Awesome World!!'); /*Message to the client*/
@@ -181,14 +181,14 @@ sender.send(message, { registrationIds: regIds } , function (err, result) {
   else    console.log(result);
 });
 
-{% endprism%}
+{% endhighlight%}
 
 ---
 
 Create both the files in a project folder, and execute `npm install`
 
 
-####Receive notifications on the client
+#### Receive notifications on the client
 
 Now we enter into the last part of preparing our client to receive notifications. We have to intimate the client to listen for notifications using a `Receiver` and a `Service` to handle the data from server.
 
@@ -196,7 +196,7 @@ Now we enter into the last part of preparing our client to receive notifications
 
 Receiver code stating the necessary service `(GCMIntentService)` to be triggered.
 
-{% prism javascript %}
+{% highlight javascript %}
 public class GCMReceiver extends WakefulBroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -205,7 +205,7 @@ public class GCMReceiver extends WakefulBroadcastReceiver{
 		setResultCode(Activity.RESULT_OK);
 	}
 }
-{% endprism %}
+{% endhighlight %}
 
 ---
 
@@ -213,7 +213,7 @@ Update Androidmanifest
 
 > app/src/main/Androidmanifest.xml
 
-{% prism markup %}
+{% highlight markup %}
 <receiver
 	android:name=".GCMReceiver"
 	android:exported="true"
@@ -223,7 +223,7 @@ Update Androidmanifest
 		<category android:name="com.example.gcm" />
 	</intent-filter>
 </receiver>
-{% endprism %}
+{% endhighlight %}
 
 ---
 
@@ -231,7 +231,7 @@ Update Androidmanifest
 
 Service code for handling the notifications part. Here `MESSAGE_KEY` is the expected key that is set from the server. 
 
-{% prism javascript %}
+{% highlight javascript %}
 public class GCMIntentService extends IntentService {
 	String MESSAGE_KEY = "key1";
 	public GCMIntentService() {
@@ -267,7 +267,7 @@ public class GCMIntentService extends IntentService {
 	}
 }
 
-{% endprism %}
+{% endhighlight %}
 
 ---
 
@@ -275,7 +275,7 @@ Update Androidmanifest
 
 > app/src/main/Androidmanifest.xml
 
-{% prism markup %}
+{% highlight markup %}
 <service
 	android:name=".GCMIntentService"
 	android:exported="false" >
@@ -283,7 +283,7 @@ Update Androidmanifest
 		<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 	</intent-filter>
 </service>
-{% endprism %}
+{% endhighlight %}
 
 ---
 

@@ -1,6 +1,6 @@
 # Build settings
 markdown: redcarpet
-syntax_highlighter: prism
+highlighter: rouge
 
 # Site settings
 title: "Blog"
@@ -54,5 +54,5 @@ social:
 
 # Plugins
 whitelist: []
-gems:      [prism, jekyll-paginate]
+gems:      [jekyll-paginate, jekyll-include-cache]
 excerpt_separator: "`"
