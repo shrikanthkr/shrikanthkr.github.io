@@ -1,6 +1,6 @@
 # Build settings
 markdown: redcarpet
-highlighter: prism
+syntax_highlighter: prism
 
 # Site settings
 title: "Blog"
