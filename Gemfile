@@ -1,11 +1,10 @@
-source 'https://rubygems.org'
-require 'json'
-require 'open-uri'
-versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+# frozen_string_literal: true
 
-gem 'github-pages', versions['github-pages']
-gem 'redcarpet'
-group :jekyll_plugins do
-   gem "prism"
-   gem "jekyll-paginate"
- end
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+
+gem "jekyll"
+gem "github-pages", group: :jekyll_plugins
