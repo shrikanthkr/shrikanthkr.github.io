@@ -52,7 +52,7 @@ As stated in the [Android developers documentation]( https://developer.android.c
     tools:keep="@drawable/mr_*" />
 {% endhighlight %}
 
-The above xml tell the gradle plugin not to shrink resources of this kind. 
+The above xml tells the gradle plugin not to shrink resources of this kind. 
 
 #### How can we verify this? 
 
