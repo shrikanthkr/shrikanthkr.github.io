@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CRUD on Android with Firebase API"
+title:  "CRUD on Android with Firebase API (Deprecated)"
 date:   2015-09-09 14:34:25
 categories: android
 tags: android, firebase, firebase android, firebase sdk

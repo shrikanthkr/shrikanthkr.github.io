@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Basics of Android GCM"
+title:  "Basics of Android GCM (Deprecated)"
 date:   2015-09-08 14:34:25
 categories: android
 tags: android, gcm, google cloud messaging
