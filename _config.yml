@@ -54,5 +54,5 @@ social:
 
 # Plugins
 whitelist: []
-gems:      [jekyll-paginate, jekyll-include-cache]
+plugins:      [jekyll-paginate, jekyll-include-cache]
 excerpt_separator: "`"
