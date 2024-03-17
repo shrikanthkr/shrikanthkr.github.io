@@ -5,7 +5,7 @@ highlighter: rouge
 # Site settings
 title: "Blog"
 description: > # this means to ignore newlines until "email:"
-   How did I do
+  How did I do...
 
 email: shrikanth_kr@yahoo.com
 #blog logo
@@ -13,34 +13,34 @@ logo: "/assets/images/logo.png"
 # blog cover
 cover: "/assets/images/background.jpg"
 
-name: 'Shrikanth'
-author: 'Shrikanth'
+name: "Shrikanth"
+author: "Shrikanth"
 author_image: "/assets/images/author.jpg"
 
-paginate:	5
+paginate: 5
 
 url: "http://shrikanthkr.github.io" # the base hostname & protocol for your site
 baseurl: ""
 
 # social icons and sharing options
 social:
-  - icon:	twitter
-    url:	https://twitter.com/shrikanth_kr
+  - icon: twitter
+    url: https://twitter.com/shrikanth_kr
     desc: Follow me on twitter
     share_url: http://twitter.com/share
     share_title: ?text=
     share_link: "&amp;url="
 
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: //www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
+  #  - icon:	facebook
+  #    url:	https://facebook.com/???
+  #    desc: Connect with me facebook
+  #    share_url: //www.facebook.com/sharer.php
+  #    share_title: ?t=
+  #    share_link: "&amp;u="
 
-  - icon:	github
-    url:	https://github.com/shrikanthkr
-    desc:	Fork me on github
+  - icon: github
+    url: https://github.com/shrikanthkr
+    desc: Fork me on github
     share_url:
     share_title:
     share_link:
@@ -54,5 +54,5 @@ social:
 
 # Plugins
 whitelist: []
-plugins:      [jekyll-paginate, jekyll-include-cache]
+plugins: [jekyll-paginate, jekyll-include-cache]
 excerpt_separator: "`"
